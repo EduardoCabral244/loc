@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Controle de Locação Praia</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TÍTULO -->
+
+    <h1>
+        🏖️ Controle de Locação
+    </h1>
+
+
+    <!-- NOVO ALUGUEL -->
+
+    <div class="card">
+
+        <h2>
+            Novo Aluguel
+        </h2>
+
+        <input
+            type="text"
+            id="cliente"
+            placeholder="Nome do cliente"
+        >
+
+        <select id="equipamento">
+
+            <option value="Cadeira">
+                Kit/ 5 cadeiras
+            </option>
+
+            <option value="Cadeira">
+                Cadeira
+            </option>
+
+            <option value="Guarda-sol">
+                Guarda-sol
+            </option>
+
+            <option value="Stand Up">
+                Stand Up
+            </option>
+
+            <option value="Caiaque">
+                Caiaque
+            </option>
+
+        </select>
+
+        <input
+            type="number"
+            id="valor"
+            placeholder="Valor do aluguel"
+            step="0.01"
+        >
+
+        <select id="pagamento">
+
+            <option value="Dinheiro">
+                Dinheiro
+            </option>
+
+            <option value="Pix">
+                Pix
+            </option>
+
+            <option value="Cartão">
+                Cartão
+            </option>
+
+        </select>
+
+        <input
+            type="number"
+            id="tempo"
+            placeholder="Tempo em minutos"
+        >
+
+        <input
+            type="text"
+            id="observacao"
+            placeholder="Observação (opcional)"
+        >
+
+        <button
+            onclick="adicionarAluguel()"
+        >
+            ➕ Adicionar Aluguel
+        </button>
+
+    </div>
+
+
+    <!-- RESUMO -->
+
+    <div class="card">
+
+        <h2>
+            💰 Resumo
+        </h2>
+
+        <p>
+            Total:
+            R$ <span id="total">0.00</span>
+        </p>
+
+        <p>
+            PIX:
+            R$ <span id="pix">0.00</span>
+        </p>
+
+        <p>
+            Dinheiro:
+            R$ <span id="dinheiro">0.00</span>
+        </p>
+
+        <p>
+            Cartão:
+            R$ <span id="cartao">0.00</span>
+        </p>
+
+        <br>
+
+        <button
+            onclick="fecharCaixa()"
+        >
+            💰 Fechar Caixa
+        </button>
+
+    </div>
+
+
+    <!-- LISTA DE ALUGUÉIS -->
+
+    <div class="card">
+
+        <h2>
+            📋 Aluguéis Ativos
+        </h2>
+
+        <!-- PESQUISA DE CLIENTE -->
+
+        <input
+            type="text"
+            id="pesquisaCliente"
+            class="barra-pesquisa"
+            placeholder="🔎 Pesquisar cliente..."
+            oninput="pesquisarCliente()"
+        >
+
+        <div id="listaAlugueis"></div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DE CONFIRMAÇÃO -->
+
+<div
+    id="modal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <h2 id="modalTitulo">
+            Confirmação
+        </h2>
+
+        <p id="modalTexto">
+            Deseja continuar?
+        </p>
+
+        <div class="modal-botoes">
+
+            <button
+                class="btn-cancelar"
+                onclick="fecharModal()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                id="btnConfirmar"
+                class="btn-confirmar"
+            >
+                Confirmar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DE EDIÇÃO -->
+
+<div
+    id="modalEdicao"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <h2>
+            ✏️ Editar Aluguel
+        </h2>
+
+        <input
+            type="text"
+            id="editarCliente"
+            placeholder="Nome do cliente"
+        >
+
+        <select id="editarEquipamento">
+
+            <option value="Cadeira">
+                Cadeira
+            </option>
+
+            <option value="Guarda-sol">
+                Guarda-sol
+            </option>
+
+            <option value="Stand Up">
+                Stand Up
+            </option>
+
+            <option value="Caiaque">
+                Caiaque
+            </option>
+
+        </select>
+
+        <input
+            type="number"
+            id="editarValor"
+            placeholder="Valor"
+            step="0.01"
+        >
+
+        <select id="editarPagamento">
+
+            <option value="Dinheiro">
+                Dinheiro
+            </option>
+
+            <option value="Pix">
+                Pix
+            </option>
+
+            <option value="Cartão">
+                Cartão
+            </option>
+
+        </select>
+
+        <input
+            type="text"
+            id="editarObservacao"
+            placeholder="Observação"
+        >
+
+        <div class="modal-botoes">
+
+            <button
+                class="btn-cancelar"
+                onclick="fecharEdicao()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                class="btn-confirmar"
+                onclick="salvarEdicao()"
+            >
+                💾 Salvar
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
